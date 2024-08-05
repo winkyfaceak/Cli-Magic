@@ -76,19 +76,20 @@ def installer():
             else:
                 print("Invalid input")
 
-    def back():
+    def quit():
         nonlocal exit_condition
         exit_condition = False
 
     def default():
         print(
             "-w to install Wacky scripts, which contain a function to delete files and directories with the revolutionary 'fuckthis' 'file or directory'\n"
-            "-h to install Homebrew scripts, to speed up the inevitable reformatting of a MacBook xd")
+            "-h to install Homebrew scripts, to speed up the inevitable reformatting of a MacBook xd\n"
+            "-x is to quit")
 
     switch = {
         "-w": wacky_scripts,
         "-h": homebrew_installer,
-        "-b": back
+        "-x": quit
     }
 
     exit_condition = True
@@ -96,30 +97,6 @@ def installer():
         command = input()
         switch.get(command, default)()
 
-
-def get_options():
-    def help_text():
-        print("To exit use -e, -q, or just press Enter to quit\n"
-              "-i to get to the installer")
-
-    def exit_program():
-        nonlocal exit_condition
-        exit_condition = False
-
-    def default():
-        print("To get help type '-h'")
-
-    switch = {
-        "-h": help_text,
-        "-e": exit_program,
-        "-q": exit_program,
-        "": exit_program
-    }
-
-    exit_condition = True
-    while exit_condition:
-        command = input()
-        switch.get(command, default)()
 
 
 def main(initialize_input):
@@ -127,7 +104,7 @@ def main(initialize_input):
     time_of_day()
     get_weather()
     if initialize_input:
-        get_options()
+        installer()
 
 
 if __name__ == "__main__":
